@@ -6,59 +6,45 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AgregarParticipante extends JFrame {
-    private JTextField nombre;
-    private JTextField telefono;
-    private JTextField region;
-    private ParticipanteService service; // Interfaz
+    private final JTextField nombre = new JTextField(10);
+    private final JTextField telefono = new JTextField(10);
+    private final JTextField region = new JTextField(10);
+    private final ParticipanteService service;
 
     public AgregarParticipante(ParticipanteService service) {
         this.service = service;
-        setupUIComponents();
+        setupUI();
     }
 
-//    private void setupBaseDeDatos() throws SQLException {
-//        String url = "jdbc:derby://localhost:1527/participantes";
-//        String user = "app";
-//        String password = "app";
-//        this.dbConn = DriverManager.getConnection(url, user, password);
-//    }
-
-    private void setupUIComponents() {
+    private void setupUI() {
         setTitle("Agregar Participante");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        nombre = new JTextField(10);
-        telefono = new JTextField(10);
-        region = new JTextField(10);
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
         region.setText("China");
 
-        JPanel contentPane = new JPanel(new FlowLayout());
-        contentPane.add(new JLabel("Nombre:"));
-        contentPane.add(nombre);
-        contentPane.add(new JLabel("Teléfono:"));
-        contentPane.add(telefono);
-        contentPane.add(new JLabel("Región:"));
-        contentPane.add(region);
+        add(new JLabel("Nombre:"));
+        add(nombre);
+        add(new JLabel("Teléfono:"));
+        add(telefono);
+        add(new JLabel("Región:"));
+        add(region);
 
-        JButton cargar = new JButton("Cargar");
-        cargar.addActionListener(e -> onBotonCargar());
-        contentPane.add(cargar);
+        JButton boton = new JButton("Cargar");
+        boton.addActionListener(e -> cargarParticipante());
+        add(boton);
 
-        setContentPane(contentPane);
         pack();
         setVisible(true);
     }
 
-    private void onBotonCargar() {
+    private void cargarParticipante() {
         try {
             service.agregarParticipante(nombre.getText(), telefono.getText(), region.getText());
+            JOptionPane.showMessageDialog(this, "Participante guardado");
             dispose();
-        } catch (IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error inesperado: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
     }
-
 }
-
-
