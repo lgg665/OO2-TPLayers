@@ -1,15 +1,14 @@
 package ar.unrn.tp4.ejercicio2.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class DefaultEmpleadoService implements EmpleadoService {
-    private List<Empleado> empleados;
-    private EmailService mailer;
+    private ArchivoEmpleados archivo;
+    private ManejoDeNotificaciones mailer;
 
     //    Constructor
-    public DefaultEmpleadoService(EmailService mailer, List<Empleado> empleados) {
-        this.empleados = empleados;
+    public DefaultEmpleadoService(ManejoDeNotificaciones mailer, ArchivoEmpleados empleados) {
+        this.archivo = empleados;
         this.mailer = mailer;
     }
 
@@ -17,7 +16,7 @@ public class DefaultEmpleadoService implements EmpleadoService {
     // a la dirección de correo electrónico del empleado dcon una implementación secreta
     @Override
     public void enviarSaludoCumpleaños(LocalDate dia) {
-        for (Empleado e : empleados) {
+        for (Empleado e : archivo.obtenerEmpleados()) {
             if (e.cumpleEsteDia(dia)) {
                 mailer.enviarSaludo(e);
             }

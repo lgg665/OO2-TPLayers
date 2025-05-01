@@ -20,16 +20,8 @@ public class Empleado {
                 && this.fechaDeNacimiento.getMonth() == dia.getMonth();
     }
 
-    public String getApellido() {
-        return apellido;
-    }
-
     public String getNombre() {
         return nombre;
-    }
-
-    public LocalDate getFechaDeNacimiento() {
-        return fechaDeNacimiento;
     }
 
     public String getEmail() {
