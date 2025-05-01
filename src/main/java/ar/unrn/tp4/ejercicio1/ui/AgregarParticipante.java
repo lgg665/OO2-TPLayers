@@ -3,28 +3,22 @@ package ar.unrn.tp4.ejercicio1.ui;
 import ar.unrn.tp4.ejercicio1.model.ParticipanteService;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class AgregarParticipante extends JFrame {
     private JTextField nombre;
     private JTextField telefono;
     private JTextField region;
-    private ParticipanteService service; // Interfaz
+    private ParticipanteService service;
 
     public AgregarParticipante(ParticipanteService service) {
         this.service = service;
         setupUIComponents();
     }
 
-//    private void setupBaseDeDatos() throws SQLException {
-//        String url = "jdbc:derby://localhost:1527/participantes";
-//        String user = "app";
-//        String password = "app";
-//        this.dbConn = DriverManager.getConnection(url, user, password);
-//    }
-
     private void setupUIComponents() {
-        setTitle("Agregar Participante");
+        setTitle("Add Participant");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         nombre = new JTextField(10);
         telefono = new JTextField(10);
@@ -32,16 +26,17 @@ public class AgregarParticipante extends JFrame {
         region.setText("China");
 
         JPanel contentPane = new JPanel(new FlowLayout());
-        contentPane.add(new JLabel("Nombre:"));
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.add(new JLabel("Nombre: "));
         contentPane.add(nombre);
-        contentPane.add(new JLabel("Teléfono:"));
+        contentPane.add(new JLabel("Telefono: "));
         contentPane.add(telefono);
-        contentPane.add(new JLabel("Región:"));
+        contentPane.add(new JLabel("Region: "));
         contentPane.add(region);
 
-        JButton cargar = new JButton("Cargar");
-        cargar.addActionListener(e -> onBotonCargar());
-        contentPane.add(cargar);
+        JButton botonCargar = new JButton("Cargar");
+        botonCargar.addActionListener(e -> onBotonCargar());
+        contentPane.add(botonCargar);
 
         setContentPane(contentPane);
         pack();
@@ -58,7 +53,6 @@ public class AgregarParticipante extends JFrame {
             JOptionPane.showMessageDialog(this, "Error inesperado: " + ex.getMessage());
         }
     }
-
 }
 
 
