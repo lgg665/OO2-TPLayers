@@ -1,0 +1,9 @@
+1, concurso x, 2024/06/01, 2026/07/01
+2, concurso y, 2024/12/21, 2025/07/15
+3, concurso granHermano, 2025/05/01, 2025/07/25
+5, concurso masterChef, 2025/03/12, 2025/08/29
+4, concurso pasado, 2020/03/12, 2021/08/29
+11, concurso futuro, 2029/03/12, 2029/08/29
+7, concurso termina hoy, 2020/03/12, 2025/05/02
+8, concurso empieza hoy, 2025/05/02, 2026/08/29
+0, concurso invalido, 2024/06/01, 2026/07/01

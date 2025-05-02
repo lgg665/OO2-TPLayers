@@ -1,5 +1,9 @@
 package ar.unrn.tp4.ejercicio3;
 
+import ar.unrn.tp4.ejercicio3.DataBase.DBArchivoConcurso;
+import ar.unrn.tp4.ejercicio3.DataBase.DBArchivoInscripto;
+import ar.unrn.tp4.ejercicio3.Ui.RadioCompetition;
+
 import javax.swing.*;
 
 public class Main {
@@ -18,6 +22,8 @@ public class Main {
     }
 
     private void start() {
-        new RadioCompetition();
+        var c = new DBArchivoConcurso();
+        var i = new DBArchivoInscripto();
+        new RadioCompetition(c, i);
     }
 }
