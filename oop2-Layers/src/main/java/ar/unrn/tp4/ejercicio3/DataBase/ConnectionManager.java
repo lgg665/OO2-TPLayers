@@ -14,17 +14,15 @@ public class ConnectionManager {
     private static Connection conn = null;
 
     // Crear una nueva conexión
-    private static Connection crearConnection() {
+    private static Connection crearConnection() throws SQLException {
         try {
             Class.forName(DRIVER);
             return DriverManager.getConnection(URL_DB + DB, USER, PASSWORD);
         } catch (ClassNotFoundException e) {
-            new SQLException("Error al cargar el driver de la base de datos.", e);
-        } catch (SQLException sqlEx) {
-            new SQLException("No se pudo establecer conexión con la base de datos." + " " + sqlEx.getMessage());
+            throw new SQLException("Error al cargar el driver de la base de datos.", e);
         }
-        return null;
     }
+
 
     // Obtener la conexión existente o reconectar si está cerrada
     public static Connection getConnection() {
